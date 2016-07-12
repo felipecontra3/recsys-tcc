@@ -15,5 +15,6 @@ Route::get('/', 'MainController@index');
 Route::get('/save-facebook', 'MainController@saveFacebook');
 Route::get('/logoff-facebook', 'MainController@logoffFacebook');
 Route::get('/save-twitter', 'MainController@saveTwitter');
+Route::get('/logoff-twitter', 'MainController@logoffTwitter');
 Route::get('/obter-dados-sociais', 'MainController@obterDadosSociais');
 

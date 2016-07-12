@@ -48,6 +48,11 @@ class MainController extends Controller
         return response()->json(['username'=>$request->get('twitterUser')]);
     }
 
+    public function logoffTwitter(Request $request){
+        $request->session()->forget('twitter_username');
+        return back();
+    }
+
     public function obterDadosSociais(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, Request $request){
         $facebookToken = $request->session()->get('fb_token');
         $twitterUsername = $request->session()->get('twitter_username');
