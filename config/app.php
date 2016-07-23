@@ -161,7 +161,9 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
-        Thujohn\Twitter\TwitterServiceProvider::class
+        Thujohn\Twitter\TwitterServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        
 
     ],
 

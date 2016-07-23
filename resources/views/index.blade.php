@@ -70,7 +70,7 @@ voce esta logado como {{ $name }}
 
     function obterDadosSociais(){
 
-        $.blockUI({ message: 'Obtendo dados sociais' })
+        $.blockUI({ message: 'Obtendo dados sociais' });
 
 
         $.get('/obter-dados-sociais', {},  function(data){

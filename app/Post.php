@@ -4,9 +4,8 @@ namespace App;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 
-
-class User extends Model
+class Post extends Model
 {
-    protected $collection = 'users';
-
+    protected $collection = 'posts';
+    
 }

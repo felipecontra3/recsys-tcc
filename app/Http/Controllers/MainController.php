@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use Carbon\Carbon;
 use Facebook\GraphNodes\GraphEdge;
 use Illuminate\Http\Request;
 
@@ -54,36 +56,55 @@ class MainController extends Controller
     }
 
     public function obterDadosSociais(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, Request $request){
+
         $facebookToken = $request->session()->get('fb_token');
         $twitterUsername = $request->session()->get('twitter_username');
 
-        $aRet = [];
+        $userData = [];
+        $facebookData = $this->getFeedFacebook($fb, $facebookToken);
+        $twitterData = $this->getFeedTwitter($twitterUsername);
 
-        $aRet['facebook'] = $this->getFeedFacebook($fb, $facebookToken);
-        $aRet['twitter'] = $this->getFeedTwitter($twitterUsername);
+        $userData['name'] = $facebookData['facebook_name'];
+        $userData['gender'] = $facebookData['gender'];
+        $userData['email'] = $facebookData['facebook_email'];
+        $userData['facebook']['posts'] = $facebookData['posts'];
+        $userData['facebook']['likes'] = $facebookData['likes'];
+        $userData['twitter'] = $twitterData;
 
+        \App\User::unguard();
+        $user = \App\User::create($userData);
+        \App\User::reguard();
 
-        return $aRet;
-
+        return $user->_id;
     }
 
 
     private function getFeedFacebook(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, $token) {
+
         if(empty($token)) {
             return null;
         }
 
         $fb->setDefaultAccessToken($token);
-        $response = $fb->get('/me?fields=name,email,gender,likes,posts&limit=1000');
-        $group = $response->getGraphGroup();
-        $user_name = $group->getField('name');
-        $user_email = $group->getField('email');
-        $user_gender = $group->getField('gender');
 
-        return $this->getFeed($fb, $group->getField('posts'));
+        $group = $fb->get("/me?fields=id,name,email,gender")->getGraphGroup();
+
+        $initialDate = (new Carbon())->subMonths(3)->format('Y-m-d');
+        $graphEdgePosts = $fb->get("/me/posts?since=$initialDate")->getGraphEdge();
+        $graphEdgeLikes = $fb->get("/me/likes")->getGraphEdge();
+
+        return array(
+                    'facebook_id' => $group->getField('id'),
+                    'facebook_name' => $group->getField('name'),
+                    'gender' => $group->getField('gender'),
+                    'facebook_email' => $group->getField('email'),
+                    'posts' => $this->getFeed($fb, $graphEdgePosts),
+                    'likes' =>  $this->getFeed($fb, $graphEdgeLikes));
+
 
 
     }
+
 
     private function getFeed(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, GraphEdge $graphEdge)
     {
@@ -111,7 +132,7 @@ class MainController extends Controller
         if(empty($username)) {
             return null;
         }
-        return \Twitter::getUserTimeline(['screen_name' => $username,  'count' => 100, 'format' => 'json']);
+        return json_decode(\Twitter::getUserTimeline(['screen_name' => $username,  'count' => 100, 'trim_user' => 1,'exclude_replies'=> 1, 'include_rts'=>0, 'format' => 'json']), true);
 
     }
 
