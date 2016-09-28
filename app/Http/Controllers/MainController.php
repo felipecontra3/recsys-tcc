@@ -14,8 +14,19 @@ class MainController extends Controller
 
     private $aRet = [];
 
+    public function testeSpark(){
+        $output = shell_exec('/dados/app/spark-1.6.2-bin-hadoop2.6/bin/spark-submit ~/Documentos/TCC/Experimento/ml_module/train_classifier_new.py');
+        print $output;
+    }
+
+    public function treinarModelos(){
+        $output = shell_exec('/dados/app/spark-1.6.2-bin-hadoop2.6/bin/spark-submit ~/Documentos/TCC/Experimento/ml_module/train_classifier_new.py');
+        print $output;
+    }
+
     public function index(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, Request $request){
         try{
+
             $token = $request->session()->get('fb_token');
             $fb->setDefaultAccessToken($token);
             $response = $fb->get('/me');
@@ -108,10 +119,13 @@ class MainController extends Controller
 
     private function getFeed(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, GraphEdge $graphEdge)
     {
-
+        $i = 0;
         foreach ($graphEdge as $status) {
             try {
-                array_push($this->aRet, $status->asArray());
+                $dados = $status->asArray();
+                $dados['id_post'] = $i;
+                array_push($this->aRet, $dados);
+                $i++;
             } catch(\Exception $e){}
 
         }

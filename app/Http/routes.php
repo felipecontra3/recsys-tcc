@@ -18,3 +18,6 @@ Route::get('/logoff-facebook', 'MainController@logoffFacebook');
 Route::get('/save-twitter', 'MainController@saveTwitter');
 Route::get('/logoff-twitter', 'MainController@logoffTwitter');
 Route::get('/obter-dados-sociais', 'MainController@obterDadosSociais');
+Route::get('/teste-spark', 'MainController@testeSpark');
+Route::get('/treinar-modelos', 'MainController@treinarModelos');
+

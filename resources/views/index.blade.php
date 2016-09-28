@@ -26,6 +26,8 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
     <![endif]-->
 
 </head>
@@ -52,7 +54,6 @@
                 <br /><br />
                 <p class="lead">Para isto precisamos que você faça login com seu Facebook e que nos forneça seu usuário do Twitter. Caso não tenha algum deles, não se preocupe, apenas um já é suficiente.</p>
                 <p class='lead'>O procedimento total leva cerca de 5 minutos.</p>
-                <p class="lead">Antes de prosseguir, gostaria de agradecer a sua participação, sua ajuda é essencial para o sucesso deste trabalho. <strong>Muito obrigado!</strong></p>
                 <a href="#login" class="btn btn-dark btn-lg">Prosseguir</a>
             </div>
         </div>
@@ -81,8 +82,8 @@
                                 <strong>Facebook</strong>
                             </h4>
                             @if(empty($name))
-                                <p>Clique abaixo para fazer login com seu Facebook</p>
-                                <button href="#" class="btn btn-light" onclick="myFacebookLogin()">Fazer Login</button>
+                                <p id="textface">Clique abaixo para fazer login com seu Facebook</p>
+                                <button id="btnface" class="btn btn-light" onclick="myFacebookLogin()">Fazer Login</button>
                             @else
                                 Você está logado como {{ $name }}
                             @endif
@@ -97,9 +98,9 @@
                                 <strong>Twitter</strong>
                             </h4>
                             @if(empty(session('twitter_username')))
-                            <p>Insira seu usuário do Twitter.</p>
+                            <p id="texttwitter">Insira seu usuário do Twitter.</p>
                             <input type='text' name="twitterUser"/>
-                            <button href="#" class="btn btn-light" style="margin-top:3px"  onclick="TwitterLogin()">Verificar</button>
+                            <button id="btntwitter" class="btn btn-light" style="margin-top:3px"  onclick="TwitterLogin()">Verificar</button>
                             @else
                                 Você está logado como {{ session('twitter_username') }}
                             @endif
@@ -109,7 +110,7 @@
                         <!-- Para ocupar o espaço -->
                     </div>
                 </div>
-                <button class="btn btn-light">Gerar recomendações</button>
+                <button class="btn btn-light" onclick="obterDadosSociais()">Gerar recomendações</button>
                 <!-- /.row (nested) -->
             </div>
             <!-- /.col-lg-10 -->
@@ -119,10 +120,9 @@
     <!-- /.container -->
 </section>
 
-<!-- Callout -->
-<aside class="callout">
-    <div class="text-vertical-center">
-        <h1>Vertically Centered Text</h1>
+<aside id="recommendations" class="recommendations">
+    <div id="posts">
+
     </div>
 </aside>
 
@@ -140,12 +140,13 @@
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
 
 <!-- Custom Theme JavaScript -->
 <script>
+
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
@@ -178,7 +179,7 @@
     function myFacebookLogin() {
         FB.login(function(){
             $.get('/save-facebook', [],  function(data){
-                $('#btnface').after('<span>Você está logado como '+data.name+'</span>');
+                $('#textface').html('<span>Você está logado como '+data.name+'</span>');
                 $('#btnface').remove();
             }, 'json')
         }, {scope: ['user_posts', 'user_likes', 'user_friends']});
@@ -204,19 +205,24 @@
 
     function TwitterLogin(){
         $.get('/save-twitter', {'twitterUser': $('input[name=twitterUser]').val()},  function(data){
-            $('#btntwitter').after('<span>Você está logado como '+data.username+'</span>');
+            $('#texttwitter').html('<span>Você está logado como '+data.username+'</span>');
             $('#btntwitter').remove();
+            $('input[name=twitterUser]').remove();
         }, 'json')
     }
 
     function obterDadosSociais(){
-
-        $.blockUI({ message: 'Obtendo dados sociais' });
-        $.get('/obter-dados-sociais', {},  function(data){
+        $.blockUI({ message: 'Obrigado por participar. As recomendações estão sendo geradas para que você as avalie.' });
+        $.get('/obter-dados-sociais', function(data){
             $.unblockUI()
-            $('#posts').html(JSON.stringify(data));
-        }, 'json')
+            $('html,body').animate({
+                scrollTop: $("#recommendations").offset().top
+            }, 3000);
+            //$('#posts').html(JSON.stringify(data));
+        })//, 'json')
     }
+
+
 
 </script>
 
