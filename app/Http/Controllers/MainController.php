@@ -100,7 +100,7 @@ class MainController extends Controller
 
         $group = $fb->get("/me?fields=id,name,email,gender")->getGraphGroup();
 
-        $initialDate = (new Carbon())->subMonths(3)->format('Y-m-d');
+        $initialDate = (new Carbon())->subMonths(12)->format('Y-m-d');
         $graphEdgePosts = $fb->get("/me/posts?since=$initialDate")->getGraphEdge();
         $graphEdgeLikes = $fb->get("/me/likes")->getGraphEdge();
 
@@ -109,17 +109,16 @@ class MainController extends Controller
                     'facebook_name' => $group->getField('name'),
                     'gender' => $group->getField('gender'),
                     'facebook_email' => $group->getField('email'),
-                    'posts' => $this->getFeed($fb, $graphEdgePosts),
-                    'likes' =>  $this->getFeed($fb, $graphEdgeLikes));
+                    'posts' => $this->getFeed($fb, $graphEdgePosts, 0),
+                    'likes' =>  $this->getFeed($fb, $graphEdgeLikes, 0));
 
 
 
     }
 
 
-    private function getFeed(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, GraphEdge $graphEdge)
+    private function getFeed(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb, GraphEdge $graphEdge, $i)
     {
-        $i = 0;
         foreach ($graphEdge as $status) {
             try {
                 $dados = $status->asArray();
@@ -137,7 +136,7 @@ class MainController extends Controller
             return $this->aRet;
         }
 
-        return $this->getFeed($fb, $next);
+        return $this->getFeed($fb, $next, $i);
 
 
     }
