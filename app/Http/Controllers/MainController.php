@@ -86,7 +86,10 @@ class MainController extends Controller
         $user = \App\User::create($userData);
         \App\User::reguard();
 
-        return $user->_id;
+        $teste = $this->obterRecomendacoes($user->_id);
+
+        return $teste;
+        #return $user->_id;
     }
 
 
@@ -100,7 +103,7 @@ class MainController extends Controller
 
         $group = $fb->get("/me?fields=id,name,email,gender")->getGraphGroup();
 
-        $initialDate = (new Carbon())->subMonths(12)->format('Y-m-d');
+        $initialDate = (new Carbon())->subMonths(3)->format('Y-m-d');
         $graphEdgePosts = $fb->get("/me/posts?since=$initialDate")->getGraphEdge();
         $graphEdgeLikes = $fb->get("/me/likes")->getGraphEdge();
 
@@ -147,6 +150,11 @@ class MainController extends Controller
         }
         return json_decode(\Twitter::getUserTimeline(['screen_name' => $username,  'count' => 100, 'trim_user' => 1,'exclude_replies'=> 1, 'include_rts'=>0, 'format' => 'json']), true);
 
+    }
+
+    private function obterRecomendacoes($iduser){
+        $output = shell_exec("/dados/app/spark-1.6.2-bin-hadoop2.6/bin/spark-submit ~/Documentos/TCC/Experimento/ml_module/make_prediction.py $iduser");
+        print $output;
     }
 
 

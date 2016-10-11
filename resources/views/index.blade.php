@@ -110,7 +110,7 @@
                         <!-- Para ocupar o espaço -->
                     </div>
                 </div>
-                <button class="btn btn-light" onclick="obterDadosSociais()">Gerar recomendações</button>
+                <button class="btn btn-light" id="btnGerar" onclick="obterDadosSociais()">Gerar recomendações</button>
                 <!-- /.row (nested) -->
             </div>
             <!-- /.col-lg-10 -->
@@ -161,6 +161,9 @@
 
     // Scrolls to the selected menu item on the page
     $(function() {
+        @if(empty(session('twitter_username')) and (empty($name)))
+            $('#btnGerar').hide()
+        @endif
         $('a[href*=#]:not([href=#])').click(function() {
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
@@ -181,6 +184,7 @@
             $.get('/save-facebook', [],  function(data){
                 $('#textface').html('<span>Você está logado como '+data.name+'</span>');
                 $('#btnface').remove();
+                $('#btnGerar').show('slow')
             }, 'json')
         }, {scope: ['user_posts', 'user_likes', 'user_friends']});
     }
@@ -208,6 +212,7 @@
             $('#texttwitter').html('<span>Você está logado como '+data.username+'</span>');
             $('#btntwitter').remove();
             $('input[name=twitterUser]').remove();
+            $('#btnGerar').show('slow')
         }, 'json')
     }
 
