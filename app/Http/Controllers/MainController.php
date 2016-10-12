@@ -86,10 +86,11 @@ class MainController extends Controller
         $user = \App\User::create($userData);
         \App\User::reguard();
 
-        $teste = $this->obterRecomendacoes($user->_id);
+        $this->obterRecomendacoes($user->_id);
+        $userRec = \App\User::find($user->_id);
+        
+        return $userRec;
 
-        return $teste;
-        #return $user->_id;
     }
 
 
@@ -114,8 +115,6 @@ class MainController extends Controller
                     'facebook_email' => $group->getField('email'),
                     'posts' => $this->getFeed($fb, $graphEdgePosts, 0),
                     'likes' =>  $this->getFeed($fb, $graphEdgeLikes, 0));
-
-
 
     }
 

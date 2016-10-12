@@ -17,6 +17,8 @@
     <!-- Custom CSS -->
     <link href="/css/stylish-portfolio.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -27,8 +29,10 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
-
     <![endif]-->
+
+
+
 
 </head>
 
@@ -121,11 +125,16 @@
 </section>
 
 <aside id="recommendations" class="recommendations">
-    <div id="posts">
+    <br /><br />
+    <h3 style="text-align: center; margin: 50px" class="header-rec">Por favor, dê uma nota de 1 a 5 para as recomendações abaixo. Esta nota deve representar a sua afinadade com o produto e não a sua propensão de compra.</h3>
+    <!--<div class="produto">
+        <img class="produto-img" src="http://imagens.americanas.com.br/produtos/01/00/item/120723/4/120723449_1GG.jpg">
+        <div class="rateYo" id="rateYo"></div>
+        <p class="produto-titulo">DVD - Cocoricó: Muito Além da Visão</p>
+        <p class="produto-descricao">DVD - Cocoricó: Muito Além da Visão Na escola as crianças estão com medo de Eurico, um aluno pouco mais velho que intimida Gabriel e depois os outros colegas da classe. As crianças tentam resolver o problema sozinhas, mas percebem que precisam da ajuda dos adultos. Esse e mais 4 episódios muito divertidos, que irão entreter a criançada. Imagem Meramente Ilustrativa.
+    </div>-->
 
-    </div>
 </aside>
-
 
 <!-- Footer -->
 <footer>
@@ -143,6 +152,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
 <script>
@@ -161,6 +171,7 @@
 
     // Scrolls to the selected menu item on the page
     $(function() {
+        $('.header-rec').hide()
         @if(empty(session('twitter_username')) and (empty($name)))
             $('#btnGerar').hide()
         @endif
@@ -176,6 +187,12 @@
                     return false;
                 }
             }
+        });
+        $("#rateYo").rateYo({
+            onSet: function (rating, rateYoInstance){
+                //persistir a nota do usuario
+            },
+            fullStar: true
         });
     });
 
@@ -219,15 +236,68 @@
     function obterDadosSociais(){
         $.blockUI({ message: 'Obrigado por participar. As recomendações estão sendo geradas para que você as avalie.' });
         $.get('/obter-dados-sociais', function(data){
+            $('.header-rec').show('fast')
             $.unblockUI()
             $('html,body').animate({
                 scrollTop: $("#recommendations").offset().top
             }, 3000);
-            //$('#posts').html(JSON.stringify(data));
-        })//, 'json')
+            if(Object.keys(data.recomendacoes).length > 0){
+                i = 0
+                $.each(data.recomendacoes, function(index, post){
+                    if(Object.keys(post.products).length> 0){
+                        $.each(post.products, function(i, prod){
+                            gerarProdutoHtml(prod, i)
+                            i = i + 1
+                        })
+                    }
+                })
+            }
+        }, 'json')
     }
 
+    function gerarProdutoHtml(prod, i){
 
+        div = document.createElement('div');
+        img = document.createElement('img');
+        p_titulo = document.createElement('p');
+        p_desc = document.createElement('p');
+
+        div_rate = document.createElement('div')
+
+        $(div).addClass('produto')
+
+        $(img).addClass('produto-img')
+        if(prod.image != null){
+            $(img).attr('src', prod.image)
+        } else {
+            $(img).attr('src', 'http://www.obusca.com.br/imovel/wp-content/themes/shandora/assets/images/sem-imagem.jpg')
+        }
+
+
+        $(p_titulo).addClass('produto-titulo')
+        $(p_titulo).html(prod.nome)
+
+        $(p_desc).addClass('produto-descricao')
+        $(p_desc).html(prod.descricaoLonga)
+
+
+        $(div_rate).addClass('rateYo')
+        $(div_rate).attr('id', 'rate-'+i)
+
+        $(div_rate).rateYo({
+            onSet: function (rating, rateYoInstance){
+                //persistir a nota do usuario
+            },
+            fullStar: true
+        });
+
+        $(div).append(img)
+        $(div).append(div_rate)
+        $(div).append(p_titulo)
+        $(div).append(p_desc)
+
+        $('#recommendations').append(div)
+    }
 
 </script>
 
