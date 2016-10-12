@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>TCC - Felipe Contratres</title>
 
@@ -246,7 +247,7 @@
                 $.each(data.recomendacoes, function(index, post){
                     if(Object.keys(post.products).length> 0){
                         $.each(post.products, function(i, prod){
-                            gerarProdutoHtml(prod, i)
+                            gerarProdutoHtml(prod, data._id, i)
                             i = i + 1
                         })
                     }
@@ -255,7 +256,7 @@
         }, 'json')
     }
 
-    function gerarProdutoHtml(prod, i){
+    function gerarProdutoHtml(prod, iduser, i){
 
         div = document.createElement('div');
         img = document.createElement('img');
@@ -285,9 +286,19 @@
         $(div_rate).attr('id', 'rate-'+i)
 
         $(div_rate).rateYo({
-            onSet: function (rating, rateYoInstance){
-                //persistir a nota do usuario
+            onSet: function (rating, rateYoInstance) {
+                $.ajax({
+                    url: '/salvar-avaliacao',
+                    type: 'post',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: {idprod: prod.idprod, iduser: iduser, nota: rating},
+                    dataType: 'json',
+                    success: function (r) {
+                        console.log(r)
+                    }
+                })
             },
+
             fullStar: true
         });
 
