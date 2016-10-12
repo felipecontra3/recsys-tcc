@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use Carbon\Carbon;
 use Facebook\GraphNodes\GraphEdge;
 use Illuminate\Http\Request;
+use \App\Avaliacao;
 
 use App\Http\Requests;
 
@@ -90,6 +90,41 @@ class MainController extends Controller
         $userRec = \App\User::find($user->_id);
         
         return $userRec;
+
+    }
+
+    public function salvarNotaUsuario(Request $request){
+
+        $iduser = $request->input('iduser');
+        $idprod = $request->input('idprod');
+        $nota = $request->input('nota');
+
+        $user = \App\User::find($iduser);
+
+        $avaliacao['idprod'] =  $idprod;
+        $avaliacao['nota'] =  $nota;
+
+        if(isset($user->avaliacoes)){
+            $avaliacao_final = $user->avaliacoes;
+        } else {
+            $avaliacao_final = array();
+        }
+
+        $existe = false;
+        foreach($avaliacao_final as $key=>$value){
+            if( strcmp($value['idprod'], $idprod) == 0){
+                $existe = true;
+                $avaliacao_final[$key] = $avaliacao;
+            }
+        }
+        if(!$existe){
+            $avaliacao_final[] = $avaliacao;
+        }
+
+        $user->avaliacoes = $avaliacao_final;
+        $user->save();
+
+        return $user->id;
 
     }
 
