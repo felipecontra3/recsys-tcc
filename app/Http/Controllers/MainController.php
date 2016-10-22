@@ -79,7 +79,7 @@ class MainController extends Controller
         $userData['gender'] = $facebookData['gender'];
         $userData['email'] = $facebookData['facebook_email'];
         $userData['facebook']['posts'] = $facebookData['posts'];
-        $userData['facebook']['likes'] = $facebookData['likes'];
+        //$userData['facebook']['likes'] = $facebookData['likes'];
         $userData['twitter'] = $twitterData;
 
         \App\User::unguard();
@@ -141,15 +141,15 @@ class MainController extends Controller
 
         $initialDate = (new Carbon())->subMonths(3)->format('Y-m-d');
         $graphEdgePosts = $fb->get("/me/posts?since=$initialDate")->getGraphEdge();
-        $graphEdgeLikes = $fb->get("/me/likes")->getGraphEdge();
+        //$graphEdgeLikes = $fb->get("/me/likes")->getGraphEdge();
 
         return array(
                     'facebook_id' => $group->getField('id'),
                     'facebook_name' => $group->getField('name'),
                     'gender' => $group->getField('gender'),
                     'facebook_email' => $group->getField('email'),
-                    'posts' => $this->getFeed($fb, $graphEdgePosts, 0),
-                    'likes' =>  $this->getFeed($fb, $graphEdgeLikes, 0));
+                    'posts' => $this->getFeed($fb, $graphEdgePosts, 0));
+                    //'likes' =>  $this->getFeed($fb, $graphEdgeLikes, 0));
 
     }
 
