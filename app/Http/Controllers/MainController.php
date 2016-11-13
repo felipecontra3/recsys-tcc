@@ -98,11 +98,13 @@ class MainController extends Controller
         $iduser = $request->input('iduser');
         $idprod = $request->input('idprod');
         $nota = $request->input('nota');
+        $similaridade = $request->input('similaridade');
 
         $user = \App\User::find($iduser);
 
         $avaliacao['idprod'] =  $idprod;
         $avaliacao['nota'] =  $nota;
+        $avaliacao['similaridade'] =  $similaridade;
 
         if(isset($user->avaliacoes)){
             $avaliacao_final = $user->avaliacoes;
@@ -139,7 +141,7 @@ class MainController extends Controller
 
         $group = $fb->get("/me?fields=id,name,email,gender")->getGraphGroup();
 
-        $initialDate = (new Carbon())->subMonths(3)->format('Y-m-d');
+        $initialDate = (new Carbon())->subMonths(4)->format('Y-m-d');
         $graphEdgePosts = $fb->get("/me/posts?since=$initialDate")->getGraphEdge();
         //$graphEdgeLikes = $fb->get("/me/likes")->getGraphEdge();
 
@@ -187,7 +189,7 @@ class MainController extends Controller
     }
 
     private function obterRecomendacoes($iduser){
-        $output = shell_exec("/dados/app/spark-1.6.2-bin-hadoop2.6/bin/spark-submit ~/Documentos/TCC/Experimento/ml_module/make_prediction.py $iduser");
+        $output = shell_exec("/home/ubuntu/spark-1.6.3-bin-hadoop2.6/bin/spark-submit /home/ubuntu/recsys-tcc-ml/make_prediction.py $iduser");
         print $output;
     }
 
