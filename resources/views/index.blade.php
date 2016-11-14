@@ -196,7 +196,7 @@
             fullStar: true
         });
     });
-    
+
     function myFacebookLogin() {
         FB.login(function(){
             $.get('/save-facebook', [],  function(data){
@@ -245,22 +245,25 @@
             }, 3000);
             if(Object.keys(data.recomendacoes).length > 0){
                 i = 0
+                a = [];
                 $.each(data.recomendacoes, function(index, post){
                     if(Object.keys(post.products).length> 0){
                         j = 0
                         post.products.sort(function(a,b){return a.cosineSimilarity-b.cosineSimilarity})
 
                         $.each(post.products, function(i, prod){
-                            if(j >= 3){
-                                return false
-                            }
+                            a[] = prod
+                            //if(j >= 3){
+                                //return false
+                            //}
                             //alert(prod.cosineSimilarity)
-                            gerarProdutoHtml(prod, data._id, i)
+                            //gerarProdutoHtml(prod, data._id, i)
                             i = i + 1
                             j = j + 1
                         })
                     }
                 })
+                console.log(a)
             }
         }, 'json')
     }
