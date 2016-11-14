@@ -134,24 +134,7 @@
         <p class="produto-titulo">DVD - Cocoricó: Muito Além da Visão</p>
         <p class="produto-descricao">DVD - Cocoricó: Muito Além da Visão Na escola as crianças estão com medo de Eurico, um aluno pouco mais velho que intimida Gabriel e depois os outros colegas da classe. As crianças tentam resolver o problema sozinhas, mas percebem que precisam da ajuda dos adultos. Esse e mais 4 episódios muito divertidos, que irão entreter a criançada. Imagem Meramente Ilustrativa.
     </div>-->
-    <div class="container">
-        <div class="produto col-xs-12">
-            <div class="col-md-10 col-xs-12">
-                <div class="rateYo jq-ry-container" id="rate-5" style="width: 160px;">
-                    <div class="jq-ry-group-wrapper">
-                        <div class="jq-ry-normal-group jq-ry-group">
-                            <!--?xml version="1.0" encoding="utf-8"?-->
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="gray"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="gray" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="gray" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="gray" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="gray" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg></div><div class="jq-ry-rated-group jq-ry-group" style="width: 0%;"><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="#f39c12"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="#f39c12" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="#f39c12" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="#f39c12" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg><!--?xml version="1.0" encoding="utf-8"?--><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" width="32px" height="32px" fill="#f39c12" style="margin-left: 0px;"><polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566 "></polygon></svg>
-                        </div>
-                    </div>
-                </div>
-                <p class="produto-titulo">Do Ódio ao Amor - Acompanha CD da Radionovela Adaptada </p>
-                <p class="produto-descricao">Conta a trajetória de um grande e talentoso pianista que, perdido em meio aos sentimentos do orgulho e do egoísmo, atrai para seu caminho as tristes consequências de suas escolhas, tecendo o seu próprio sofrimento. O personagem olhando apenas para si próprio e esquecendo os corações amorosos, liga-se as entidades necessitadas que tentam destruí-lo.</p>
-            </div>
-            <div class="col-md-2 col-xs-12 text-center">
-                <img class="produto-img" src="http://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=4917787&amp;amp;qld=90&amp;amp;l=430&amp;amp;a=-1">
-            </div>
-        </div>
+    <div class="container div-recs">
     </div>
 
 
@@ -352,7 +335,7 @@
 
 
 
-        $('#recommendations').append(div)
+        $('.div-recs').append(div)
     }
 
     function dynamicSort(property) {
