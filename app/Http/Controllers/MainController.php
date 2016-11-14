@@ -88,7 +88,7 @@ class MainController extends Controller
 
         $this->obterRecomendacoes($user->_id);
         $userRec = \App\User::find($user->_id);
-        
+
         return $userRec;
 
     }
@@ -189,7 +189,7 @@ class MainController extends Controller
     }
 
     private function obterRecomendacoes($iduser){
-        $output = shell_exec("/home/ubuntu/spark-1.6.3-bin-hadoop2.6/bin/spark-submit /home/ubuntu/recsys-tcc-ml/make_prediction.py $iduser");
+        $output = shell_exec("/dados/app/spark-1.6.2-bin-hadoop2.6/bin/spark-submit ~/Documentos/TCC/Experimento/ml_module/make_prediction.py $iduser");
         print $output;
     }
 

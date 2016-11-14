@@ -198,6 +198,13 @@
     });
 
     function myFacebookLogin() {
+        FB.init({
+            appId      : '{{  env('FACEBOOK_APP_ID') }}',
+            xfbml      : true,
+            cookie     : true,
+            version    : 'v2.6'
+        });
+
         FB.login(function(){
             $.get('/save-facebook', [],  function(data){
                 $('#textface').html('<span>Você está logado como '+data.name+'</span>');
@@ -207,14 +214,9 @@
         }, {scope: ['user_posts', 'user_likes', 'user_friends']});
     }
 
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '{{  env('FACEBOOK_APP_ID') }}',
-            xfbml      : true,
-            cookie     : true,
-            version    : 'v2.6'
-        });
-    };
+    //window.fbAsyncInit = function() {
+
+    //};
 
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
