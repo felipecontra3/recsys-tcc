@@ -263,8 +263,10 @@
                         })
                     }
                 })
-                recs.sort(function(a,b){return b.cosineSimilarity-a.cosineSimilarity})
-                console.log(recs)
+                recs.sort(function(a,b){return b.cosineSimilarity-a.cosineSimilarity}).slice(0,10)
+                $.each(recs, function(i, prod){
+                    gerarProdutoHtml(prod, data._id, i)
+                })
             }
         }, 'json')
     }
