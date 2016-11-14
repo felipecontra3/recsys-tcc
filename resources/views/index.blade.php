@@ -263,7 +263,8 @@
                         })
                     }
                 })
-                recs.sort(function(a,b){return b.cosineSimilarity-a.cosineSimilarity}).slice(0,10)
+                recs.sort(function(a,b){return b.cosineSimilarity-a.cosineSimilarity})
+                recs = recs.slice(0,10)
                 $.each(recs, function(i, prod){
                     gerarProdutoHtml(prod, data._id, i)
                 })
