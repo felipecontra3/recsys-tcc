@@ -263,7 +263,7 @@
                         })
                     }
                 })
-                recs.sort(function(a,b){return a.cosineSimilarity-b.cosineSimilarity})
+                recs.sort(function(a,b){return b.cosineSimilarity-a.cosineSimilarity})
                 console.log(recs)
             }
         }, 'json')
