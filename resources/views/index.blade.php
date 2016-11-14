@@ -236,7 +236,7 @@
     }
 
     function obterDadosSociais(){
-        $.blockUI({ message: 'Obrigado por participar. As recomendações estão sendo geradas para que você as avalie.' });
+        $.blockUI({ message: 'Obrigado por participar. As recomendações estão sendo geradas para que você as avalie. Devido a restrições de custos, a infraestrutura utilizada não é superpotente, portanto pode levar alguns minutos.' });
         $.get('/obter-dados-sociais', function(data){
             $('.header-rec').show('fast')
             $.unblockUI()
@@ -244,27 +244,16 @@
                 scrollTop: $("#recommendations").offset().top
             }, 3000);
             if(Object.keys(data.recomendacoes).length > 0){
-                i = 0;
                 recs = [];
                 $.each(data.recomendacoes, function(index, post){
                     if(Object.keys(post.products).length> 0){
-                        j = 0
-                        post.products.sort(function(a,b){return a.cosineSimilarity-b.cosineSimilarity})
-
                         $.each(post.products, function(i, prod){
                             recs.push(prod)
-                            //if(j >= 3){
-                                //return false
-                            //}
-                            //alert(prod.cosineSimilarity)
-                            //gerarProdutoHtml(prod, data._id, i)
-                            i = i + 1
-                            j = j + 1
                         })
                     }
-                })
+                });
                 recs.sort(function(a,b){return b.cosineSimilarity-a.cosineSimilarity})
-                recs = recs.slice(0,10)
+                recs = recs.slice(0,10);
                 $.each(recs, function(i, prod){
                     gerarProdutoHtml(prod, data._id, i)
                 })
