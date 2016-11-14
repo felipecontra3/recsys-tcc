@@ -244,7 +244,7 @@
                 scrollTop: $("#recommendations").offset().top
             }, 3000);
             if(Object.keys(data.recomendacoes).length > 0){
-                i = 0
+                i = 0;
                 a = [];
                 $.each(data.recomendacoes, function(index, post){
                     if(Object.keys(post.products).length> 0){
@@ -252,7 +252,7 @@
                         post.products.sort(function(a,b){return a.cosineSimilarity-b.cosineSimilarity})
 
                         $.each(post.products, function(i, prod){
-                            a[] = prod
+                            a.push(prod)
                             //if(j >= 3){
                                 //return false
                             //}
