@@ -326,8 +326,7 @@
         $(div_desc).append(div_rate)
         $(div_desc).append(p_titulo)
         $(div_desc).append(p_desc)
-        $(div_desc).append(div2)
-
+        
         $(div_img).append(img)
 
         $(div).append(div_desc)
