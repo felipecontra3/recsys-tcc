@@ -236,7 +236,7 @@
     }
 
     function obterDadosSociais(){
-        $.blockUI({ message: 'Obrigado por participar. As recomendações estão sendo geradas para que você as avalie. Devido a restrições de custos, a infraestrutura utilizada não é superpotente, portanto pode levar alguns minutos.' });
+        $.blockUI({ message: 'Obrigado por participar. As recomendações estão sendo geradas para que você as avalie. Este processo pode demorar alguns minutos, agradeço muito a sua ajuda!' });
         $.get('/obter-dados-sociais', function(data){
             $('.header-rec').show('fast')
             $.unblockUI()
