@@ -196,6 +196,17 @@
             fullStar: true
         });
     });
+    
+    function myFacebookLogin() {
+        FB.login(function(){
+            $.get('/save-facebook', [],  function(data){
+                $('#textface').html('<span>Você está logado como '+data.name+'</span>');
+                $('#btnface').remove();
+                $('#btnGerar').show('slow')
+            }, 'json')
+        }, {scope: ['user_posts', 'user_likes', 'user_friends']});
+    }
+
 
     window.fbAsyncInit = function() {
         FB.init({
@@ -213,20 +224,6 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
-
-    function myFacebookLogin() {
-        FB.login(function(){
-            $.get('/save-facebook', [],  function(data){
-                $('#textface').html('<span>Você está logado como '+data.name+'</span>');
-                $('#btnface').remove();
-                $('#btnGerar').show('slow')
-            }, 'json')
-        }, {scope: ['user_posts', 'user_likes', 'user_friends']});
-    }
-
-
-
 
 
     function TwitterLogin(){
