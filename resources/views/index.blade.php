@@ -262,7 +262,10 @@
             }
         }, 'json')
             .fail(function(){
-                alert('Erro ao processar as recomendações')
+                error = document.createElement('h1');
+                error.css('color', '#fff')
+                error.html("Não foi possível gerar nenhuma recomendação. Isto também é um resultado que será analisado.")
+                $('.div-recs').append(error)
             })
             .always(function() {
                 $.unblockUI()
