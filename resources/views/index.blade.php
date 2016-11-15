@@ -263,8 +263,8 @@
         }, 'json')
             .fail(function(){
                 error = document.createElement('h1');
-                error.css('color', '#fff')
-                error.html("Não foi possível gerar nenhuma recomendação. Isto também é um resultado que será analisado.")
+                $(error).css('color', '#fff')
+                $(error).html("Não foi possível gerar nenhuma recomendação. Isto também é um resultado que será analisado.")
                 $('.div-recs').append(error)
             })
             .always(function() {
