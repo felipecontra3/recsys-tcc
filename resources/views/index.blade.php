@@ -126,7 +126,6 @@
 </section>
 
 <section id="recommendations" class="recommendations">
-    <br /><br />
     <h3 style="text-align: center; margin: 50px" class="header-rec">Por favor, dê uma nota de 1 a 5 para as recomendações abaixo. Esta nota deve representar a sua afinadade com o produto e não a sua propensão de compra.</h3>
     <!--<div class="produto">
         <img class="produto-img" src="http://imagens.americanas.com.br/produtos/01/00/item/120723/4/120723449_1GG.jpg">
