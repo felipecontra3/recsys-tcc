@@ -242,7 +242,6 @@
         $.blockUI({ message: 'Obrigado por participar! As recomendações estão sendo geradas para que você as avalie. Este processo pode demorar alguns minutos,' });
         $.get('/obter-dados-sociais', function(data){
             $('.header-rec').show('fast')
-            $.unblockUI()
             $('html,body').animate({
                 scrollTop: $("#recommendations").offset().top
             }, 3000);
@@ -262,6 +261,12 @@
                 })
             }
         }, 'json')
+            .fail(function(){
+                alert('Erro ao processar as recomendações')
+            })
+            .always(function() {
+                $.unblockUI()
+            })
     }
 
     function gerarProdutoHtml(prod, iduser, i){
@@ -326,7 +331,7 @@
         $(div_desc).append(div_rate)
         $(div_desc).append(p_titulo)
         $(div_desc).append(p_desc)
-        
+
         $(div_img).append(img)
 
         $(div).append(div_desc)
