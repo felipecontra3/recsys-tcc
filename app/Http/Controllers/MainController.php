@@ -141,7 +141,7 @@ class MainController extends Controller
 
         $group = $fb->get("/me?fields=id,name,email,gender")->getGraphGroup();
 
-        $initialDate = (new Carbon())->subMonths(4)->format('Y-m-d');
+        $initialDate = (new Carbon())->subMonths(3)->format('Y-m-d');
         $graphEdgePosts = $fb->get("/me/posts?since=$initialDate")->getGraphEdge();
         //$graphEdgeLikes = $fb->get("/me/likes")->getGraphEdge();
 
@@ -184,7 +184,7 @@ class MainController extends Controller
         if(empty($username)) {
             return null;
         }
-        return json_decode(\Twitter::getUserTimeline(['screen_name' => $username,  'count' => 100, 'trim_user' => 1,'exclude_replies'=> 1, 'include_rts'=>0, 'format' => 'json']), true);
+        return json_decode(\Twitter::getUserTimeline(['screen_name' => $username,  'count' => 30, 'trim_user' => 1,'exclude_replies'=> 1, 'include_rts'=>0, 'format' => 'json']), true);
 
     }
 
