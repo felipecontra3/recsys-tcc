@@ -241,14 +241,16 @@ footer {
 .produto {
     background-color: #fff;
     color: #000;
-    margin: 20px;
-    padding: 18px;
+    margin: 10px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
 }
 .produto-img {
-    height: 160px;
-    width: 160px;
+    margin-top: 10px;
+    margin-right: -45px;
+    height: 180px;
+    /*width: 160px;*/
 }
 .produto-titulo {
     font-size: 20px;
